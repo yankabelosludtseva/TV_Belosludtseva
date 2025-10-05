@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using пр_6.Classes;
 
 namespace пр_6
 {
@@ -20,9 +21,22 @@ namespace пр_6
     /// </summary>
     public partial class MainWindow : Window
     {
+        Classes.TV TV = new Classes.TV();
         public MainWindow()
         {
             InitializeComponent();
+            VideoPlayer.Source = new Uri(TV.Channels[TV.ActiveChannel].Src);
+            VideoPlayer.Play();
+        }
+
+        private void BackChannel(object sender, RoutedEventArgs e)
+        {
+            TV.BackChannel(VideoPlayer, NameChannel);
+        }
+
+        private void NextChannel(object sender, RoutedEventArgs e)
+        {
+            TV.NextChannel(VideoPlayer, NameChannel);
         }
     }
 }
